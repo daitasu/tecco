@@ -1,0 +1,28 @@
+{
+  "name": "test-tecco",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "daitasu",
+  "license": "MIT",
+  "bin": {
+    "tecco": "dist/index.js"
+  },
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "dev:watch": "ts-node-dev --respawn src/index.ts",
+    "clean": "rimraf dist/*",
+    "tsc": "tsc",
+    "build": "npm-run-all clean tsc",
+    "start": "node ."
+  },
+  "dependencies": {
+    "consola": "^2.10.1",
+    "typescript": "^3.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^12.6.9",
+    "ts-node": "^8.3.0",
+    "ts-node-dev": "^1.0.0-pre.40",
+    "npm-run-all": "^4.1.5"
+  }
+}
