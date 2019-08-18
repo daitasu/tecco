@@ -1,5 +1,4 @@
 
-
 export const vueTemplate = (fileName: string, mixinPath: string = '') =>
 `<template>
   <div></div>

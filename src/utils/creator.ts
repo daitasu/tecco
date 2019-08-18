@@ -7,25 +7,24 @@ import { specTemplate } from '../templates/specTemplate';
 import { handleError, handleLogger, createFile } from './handler';
 
 export default class {
-  private components: Array<Setting>;
+  private components: Setting[];
   private mixin: Setting;
   private fileName: string;
 
-  constructor(components: Array<Setting>, mixin: Setting, fileName: string) {
+  constructor(components: Setting[], mixin: Setting, fileName: string) {
     this.components = components;
     this.mixin = mixin;
     this.fileName = fileName;
   }
 
-
-  createVue(path: string) {
+  public createVue(path: string) {
     if (!path) {
       handleError('components配下にpathフィールドが存在しません。');
     }
     createFile(`${path}/${this.fileName}.vue`, vueTemplate(this.fileName, this.mixin.path));
-  };
+  }
 
-  createTest(path: string, testPath: string = "") {
+  public createTest(path: string, testPath: string = '') {
     if (!path) {
       handleError('components配下にpathフィールドが存在しません。');
     }
@@ -33,7 +32,7 @@ export default class {
     createFile(`${filePath}/${this.fileName}.spec.js`, specTemplate(this.fileName));
   }
 
-  createMixin() {
+  public createMixin() {
     const { path } = this.mixin;
     if (!path) {
       handleError('mixin配下にpathフィールドが存在しません。');
@@ -41,7 +40,7 @@ export default class {
     createFile(`${path}/${this.fileName}.js`, mixinTemplate());
   }
 
-  createFiles() {
+  public createFiles() {
     for (const component of this.components) {
       if (!component.path) {
         return handleError('componentsオブジェクトにpathフィールドが存在しません。');
@@ -59,4 +58,4 @@ export default class {
       }
     }
   }
-};
+}
