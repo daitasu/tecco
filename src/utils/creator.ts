@@ -4,7 +4,7 @@ import { Setting } from '../interface';
 import { vueTemplate } from '../templates/vueTemplate';
 import { mixinTemplate } from '../templates/mixinTemplate';
 import { specTemplate } from '../templates/specTemplate';
-import { handleError, handleLogger } from './handler';
+import { handleError, handleLogger, createFile } from './handler';
 
 export default class {
   private components: Array<Setting>;
@@ -22,11 +22,7 @@ export default class {
     if (!path) {
       handleError('components配下にpathフィールドが存在しません。');
     }
-
-    fs.writeFile(`${path}/${this.fileName}.vue`, vueTemplate(this.fileName, this.mixin.path), err => {
-      if (err) return handleError(err.message);
-      handleLogger("success", `[CREATE] ${path}/${this.fileName}.vue`);
-    });
+    createFile(`${path}/${this.fileName}.vue`, vueTemplate(this.fileName, this.mixin.path));
   };
 
   createTest(path: string, testPath: string = "") {
@@ -34,10 +30,7 @@ export default class {
       handleError('components配下にpathフィールドが存在しません。');
     }
     const filePath = testPath ? testPath : path;
-    fs.writeFile(`${filePath}/${this.fileName}.spec.js`, specTemplate(this.fileName), err => {
-      if (err) return handleError(err.message);
-      handleLogger("success", `[CREATE] ${filePath}/${this.fileName}.spec.js`);
-    });
+    createFile(`${filePath}/${this.fileName}.spec.js`, specTemplate(this.fileName));
   }
 
   createMixin() {
@@ -45,10 +38,7 @@ export default class {
     if (!path) {
       handleError('mixin配下にpathフィールドが存在しません。');
     }
-    fs.writeFile(`${path}/${this.fileName}.js`, mixinTemplate(), err => {
-      if (err) return handleError(err.message);
-      handleLogger("success", `[CREATE] ${path}/${this.fileName}.js`);
-    });
+    createFile(`${path}/${this.fileName}.js`, mixinTemplate());
   }
 
   createFiles() {
