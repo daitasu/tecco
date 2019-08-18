@@ -1,0 +1,25 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "rules": {
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "indent": [
+      true,
+      "space",
+      2
+    ],
+    "array-type": {
+      "options": "array-simple",
+      "severity": "warning"
+    },
+    "arrow-parens": true,
+    "interface-name": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false
+  }
+}

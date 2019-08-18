@@ -13,7 +13,9 @@
     "clean": "rimraf dist/*",
     "tsc": "tsc",
     "build": "yarn run clean && yarn run tsc",
-    "start": "node ."
+    "start": "node .",
+    "lint": "tslint 'src/**/*.ts'",
+    "lintfix": "yarn run lint --fix"
   },
   "dependencies": {
     "consola": "^2.10.1",
@@ -24,6 +26,7 @@
     "@types/fs-extra": "^8.0.0",
     "@types/node": "^12.6.9",
     "ts-node": "^8.3.0",
-    "ts-node-dev": "^1.0.0-pre.40"
+    "ts-node-dev": "^1.0.0-pre.40",
+    "tslint": "^5.18.0"
   }
 }
