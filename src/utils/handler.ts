@@ -1,5 +1,5 @@
 import consola from 'consola';
-import { outputFile } from 'fs-extra';
+import { outputFile, readJson } from 'fs-extra';
 
 export const handleError = (message: string) => {
   handleLogger("error", message);
@@ -31,6 +31,14 @@ export const createFile = async (file: string, contents: string) => {
     // wx: The file is created (if it does not exist) but fails if the path exists.
     await outputFile(file, contents, { flag: 'wx' });
     handleLogger("success", `[CREATE] ${file}`);
+  } catch(err) {
+    handleError(err);
+  }
+};
+
+export const readConfig = async (path: string) => {
+  try {
+    return await readJson(path);
   } catch(err) {
     handleError(err);
   }
