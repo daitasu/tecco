@@ -1,0 +1,17 @@
+{
+  "components": [
+    {
+      "path": "pc",
+      "test": true
+    },
+    {
+      "path": "mobile",
+      "test": true
+    }
+  ],
+  "mixin": {
+    "path": "mixin",
+    "test": true,
+    "testPath": "mixin/tests"
+  }
+}
