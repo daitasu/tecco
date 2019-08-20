@@ -3,7 +3,7 @@ declare function require(x: string): any;
 import { handleError, readConfig } from './utils/handler';
 import FileCreator from './utils/creator';
 
-const createdFileName = process.argv[2];
+const createdFile = process.argv[2];
 export default async () => {
   if (process.argv.length < 3) {
     return handleError('生成するファイル名の記載がありません');
@@ -19,6 +19,6 @@ export default async () => {
     return handleError('configファイルにcomponentsフィールドが存在しません。');
   }
 
-  const fileCreator = new FileCreator(components, mixin, createdFileName);
+  const fileCreator = new FileCreator(components, mixin, createdFile);
   fileCreator.createFiles();
 };

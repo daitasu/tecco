@@ -1,11 +1,11 @@
 
-export const vueTemplate = (fileName: string, mixinPath: string = '') =>
+export const vueTemplate = (fileName: string, filePath: string, mixinPath: string = '') =>
 `<template>
   <div></div>
 </template>
 
 <script>
-${mixinImport(fileName, mixinPath)}
+${mixinPath ? `import ${fileName} from '~/${mixinPath}/${filePath}${fileName}'` : ''};
 
 export default {
   name: '${fileName}',
@@ -16,7 +16,3 @@ export default {
 <style lang="scss" scoped>
 </style>
 `;
-
-const mixinImport = (fileName: string, mixinPath: string) => {
-  return mixinPath ? `import ${fileName} from '~/${mixinPath}/${fileName}'` : '';
-};
